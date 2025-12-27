@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
@@ -38,11 +40,11 @@ String options = @" ⚔️ MATCH    -- Engage in a battle of RPS.
  🎒 BAG      -- Check your bag for ITEMs.
  🔍 INSPECT  -- Look at your opponent.";
 
- String optionsMatch = @" 🪨 ROCK
+String optionsMatch = @" 🪨 ROCK
  📄 PAPER
  ✂️ SCISSORS";
 
- String optionInspectSelected = @" [ 🔍 INSPECT  -- Look at your opponent. ]";
+String optionInspectSelected = @" [ 🔍 INSPECT  -- Look at your opponent. ]";
 
 String narrationBase = @"   The training dummy just... stands there. Menacingly.
    (It's literally just a sack of hay...)";
@@ -60,6 +62,7 @@ String narrationMatchShoot = @"   SHOOT!";
 String narrationInspectDummy = @"   The dummy has seen better days. Also worse days. It's a dummy.
    HP: (number) ATK: (number) DEF: (number)";
 
+// starting screen
 Console.WriteLine(battleHeaderGag);
 Console.WriteLine(narrationBase);
 Console.WriteLine(divider);
@@ -95,4 +98,21 @@ else
    Console.WriteLine(divider);
    Console.WriteLine(options);
    Console.WriteLine(divider);
+}
+
+while (
+   responseLayer1?.ToLower() != "match"
+   &&
+   responseLayer1?.ToLower() != "bag"
+   &&
+   responseLayer1?.ToLower() != "inspect"
+   )
+{  
+   Console.WriteLine(battleHeader);
+   Console.WriteLine(narrationNoOption);
+   Console.WriteLine(divider);
+   Console.WriteLine(options);
+   Console.WriteLine(divider);
+   Console.ReadLine();
+   responseLayer1 = Console.ReadLine();
 }
