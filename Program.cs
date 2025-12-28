@@ -2,6 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
@@ -26,6 +27,8 @@ Options:
 3. Scissors -- A poke with two fingers. Intimidating.
 */
 
+// ASCII ART
+
 String battleHeaderGag = @"╔═══════════════════════════════════════════════════════╗
 ║           BATTLE START (...against a Dummy)           ║
 ╚═══════════════════════════════════════════════════════╝"; //@ = multiline
@@ -44,7 +47,9 @@ String optionsMatch = @" 🪨 ROCK
  📄 PAPER
  ✂️ SCISSORS";
 
-String optionInspectSelected = @" [ 🔍 INSPECT  -- Look at your opponent. ]";
+String back = @"
+ ↩️ BACK
+ ";
 
 String narrationBase = @"   The training dummy just... stands there. Menacingly.
    (It's literally just a sack of hay...)";
@@ -62,57 +67,131 @@ String narrationMatchShoot = @"   SHOOT!";
 String narrationInspectDummy = @"   The dummy has seen better days. Also worse days. It's a dummy.
    HP: (number) ATK: (number) DEF: (number)";
 
-// starting screen
-Console.WriteLine(battleHeaderGag);
-Console.WriteLine(narrationBase);
-Console.WriteLine(divider);
-Console.WriteLine(options);
-Console.WriteLine(divider);
+String currentScreen = "BattleMainGag";
+String previousScreen = "";
 
-String? responseLayer1 = Console.ReadLine();
+int PlayerHP = 10;
+int DummyHP = PlayerHP;
 
-if (responseLayer1?.ToLower() == "match")
+while (PlayerHP > 0 && DummyHP > 0)
 {
-   Console.WriteLine(battleHeader);
-   Console.WriteLine(narrationMatchStancePlayer);
-   Console.WriteLine(divider);
-   Console.WriteLine(optionsMatch);
-   Console.WriteLine(divider);
-}
-else if (responseLayer1?.ToLower() == "bag")
-{
-    
-}
-else if (responseLayer1?.ToLower() == "inspect")
-{
-   Console.WriteLine(battleHeader);
-   Console.WriteLine(narrationInspectDummy);
-   Console.WriteLine(divider);
-   Console.WriteLine(optionInspectSelected);
-   Console.WriteLine(divider);
-}
-else
-{
-   Console.WriteLine(battleHeader);
-   Console.WriteLine(narrationNoOption);
-   Console.WriteLine(divider);
-   Console.WriteLine(options);
-   Console.WriteLine(divider);
-}
+   // SCREEN DISPLAY
+   if (currentScreen == "BattleMainGag")
+   {
+      Console.WriteLine(battleHeaderGag);
+      Console.WriteLine(narrationBase);
+      Console.WriteLine(divider);
+      Console.WriteLine(options);
+      Console.WriteLine(divider);
+   }
+   else if (currentScreen == "BattleMain")
+   {
+      Console.WriteLine(battleHeader);
+      Console.WriteLine(narrationBase);
+      Console.WriteLine(divider);
+      Console.WriteLine(options);
+      Console.WriteLine(divider);
+   }
+   else if (currentScreen == "InspectDummy")
+   {
+      Console.WriteLine(battleHeader);
+      Console.WriteLine(narrationInspectDummy);
+      Console.WriteLine(divider);
+      Console.WriteLine(back);
+      Console.WriteLine(divider);
+   }
+   else if (currentScreen == "BattleMatchStance")
+   {
+      Console.WriteLine(battleHeader);
+      Console.WriteLine(narrationMatchStancePlayer);
+      Console.WriteLine(divider);
+      Console.WriteLine(optionsMatch);
+      Console.WriteLine(divider);
+   }
 
-while (
-   responseLayer1?.ToLower() != "match"
-   &&
-   responseLayer1?.ToLower() != "bag"
-   &&
-   responseLayer1?.ToLower() != "inspect"
-   )
-{  
-   Console.WriteLine(battleHeader);
-   Console.WriteLine(narrationNoOption);
-   Console.WriteLine(divider);
-   Console.WriteLine(options);
-   Console.WriteLine(divider);
-   Console.ReadLine();
-   responseLayer1 = Console.ReadLine();
+   // GET INPUT
+   String? responseLayer1 = Console.ReadLine();
+
+   // HANDLE INPUT FOR BATTLEMAIN SCREENS
+   if (currentScreen == "BattleMainGag" || currentScreen == "BattleMain")
+   {
+      // Input validation
+      while (responseLayer1?.ToLower() != "match" 
+          && responseLayer1?.ToLower() != "bag" 
+          && responseLayer1?.ToLower() != "inspect")
+      {
+         Console.WriteLine(battleHeader);
+         Console.WriteLine(narrationNoOption);
+         Console.WriteLine(divider);
+         Console.WriteLine(options);
+         Console.WriteLine(divider);
+         responseLayer1 = Console.ReadLine();
+      }
+
+      // Process valid input
+      if (responseLayer1?.ToLower() == "match")
+      {
+         previousScreen = currentScreen;
+         currentScreen = "BattleMatchStance";
+      }
+      else if (responseLayer1?.ToLower() == "bag")
+      {
+         // TODO: bag screen
+      }
+      else if (responseLayer1?.ToLower() == "inspect")
+      {
+         previousScreen = currentScreen;
+         currentScreen = "InspectDummy";
+      }
+   }
+   // HANDLE INPUT FOR INSPECT SCREEN
+   else if (currentScreen == "InspectDummy")
+   {
+      // Input validation
+      while (responseLayer1?.ToLower() != "back")
+      {
+         Console.WriteLine(battleHeader);
+         Console.WriteLine(narrationNoOption);
+         Console.WriteLine(divider);
+         Console.WriteLine(back);
+         Console.WriteLine(divider);
+         responseLayer1 = Console.ReadLine();
+      }
+
+      // Process back
+      if (responseLayer1?.ToLower() == "back")
+      {
+         currentScreen = "BattleMain";
+      }
+   }
+   // HANDLE INPUT FOR MATCH STANCE SCREEN
+   else if (currentScreen == "BattleMatchStance")
+   {
+      // Input validation
+      while (responseLayer1?.ToLower() != "rock" 
+          && responseLayer1?.ToLower() != "paper" 
+          && responseLayer1?.ToLower() != "scissors")
+      {
+         Console.WriteLine(battleHeader);
+         Console.WriteLine(narrationNoOption);
+         Console.WriteLine(divider);
+         Console.WriteLine(optionsMatch);
+         Console.WriteLine(divider);
+         responseLayer1 = Console.ReadLine();
+      }
+
+      // Process RPS choice
+      if (responseLayer1?.ToLower() == "rock")
+      {
+         // TODO: rock logic
+      }
+      else if (responseLayer1?.ToLower() == "paper")
+      {
+         // TODO: paper logic
+      }
+      else if (responseLayer1?.ToLower() == "scissors")
+      {
+         // TODO: scissors logic
+      }
+   }
 }
