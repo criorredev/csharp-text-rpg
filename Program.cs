@@ -1,12 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices;
-using Microsoft.Win32.SafeHandles;
-
-/* 
+﻿/* 
 Player has HP, attack, gold (variables)
 Enemy has HP, attack (variables)
 Make choices with if statements
