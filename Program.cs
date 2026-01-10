@@ -73,8 +73,7 @@ String narrationMatchRPS = @"   ROCK, PAPER, SCISSORS...";
 
 String narrationMatchShoot = @"   SHOOT!";
 
-String narrationInspectDummy = @"   The dummy has seen better days. Also worse days. It's a dummy.
-   HP: (number) ATK: (number) DEF: (number)";
+String narrationInspectDummy = @$"   The dummy has seen better days. Also worse days. It's a dummy.";
 
 String lineBreak = @"   ";
 
@@ -120,6 +119,7 @@ while (PlayerHP > 0 && DummyHP > 0)
    {
       Console.WriteLine(battleHeaderGag);
       Console.WriteLine(narrationBase);
+      Console.WriteLine($"   HP: {PlayerHP}");
       Console.WriteLine(divider);
       Console.WriteLine(options);
       Console.WriteLine(divider);
@@ -128,6 +128,7 @@ while (PlayerHP > 0 && DummyHP > 0)
    {
       Console.WriteLine(battleHeader);
       Console.WriteLine(narrationBase);
+      Console.WriteLine($"   HP: {PlayerHP}");
       Console.WriteLine(divider);
       Console.WriteLine(options);
       Console.WriteLine(divider);
@@ -136,6 +137,7 @@ while (PlayerHP > 0 && DummyHP > 0)
    {
       Console.WriteLine(battleHeader);
       Console.WriteLine(narrationInspectDummy);
+      Console.WriteLine($"   HP: {DummyHP} || ATK: 1 || DEF: 0");
       Console.WriteLine(divider);
       Console.WriteLine(back);
       Console.WriteLine(divider);
