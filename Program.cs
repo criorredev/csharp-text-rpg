@@ -34,6 +34,8 @@ String options = @" ⚔️ MATCH    -- Engage in a battle of RPS.
  🎒 BAG      -- Check your bag for ITEMs.
  🔍 INSPECT  -- Look at your opponent.";
 
+ String Bag = @" Your bag is empty.";
+
 String optionsMatch = @" 🪨 ROCK
  📄 PAPER
  ✂️ SCISSORS";
@@ -145,6 +147,14 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       responseLayer1 = "";
    }
+   else if (currentScreen == "Bag")
+   {
+      Console.WriteLine(battleHeader);
+      Console.WriteLine(Bag);
+      Console.WriteLine(divider);
+      Console.WriteLine(back);
+      Console.WriteLine(divider);
+   }
    else if (currentScreen == "BattleMatchStance")
    {
       Console.WriteLine(battleHeader);
@@ -161,7 +171,6 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(matchRock);
       Console.WriteLine(divider);
-      responseLayer1 = "";
    }
    else if (currentScreen == "PlayerChoicePaper")
    {
@@ -170,7 +179,6 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(matchPaper);
       Console.WriteLine(divider);
-      responseLayer1 = "";
    }
    else if (currentScreen == "PlayerChoiceScissors")
    {
@@ -179,7 +187,6 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(matchScissors);
       Console.WriteLine(divider);
-      responseLayer1 = "";
    }
    else if (currentScreen == "narrationMatchStanceDummy")
    {
@@ -278,7 +285,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
    }
    // GET INPUT
-   if (currentScreen == "BattleMainGag" || currentScreen == "BattleMain" || currentScreen == "InspectDummy" || currentScreen == "BattleMatchStance")
+   if (currentScreen == "BattleMainGag" || currentScreen == "BattleMain" || currentScreen == "Bag" || currentScreen == "InspectDummy" || currentScreen == "BattleMatchStance")
    {
       responseLayer1 = Console.ReadLine();
    }
@@ -342,12 +349,34 @@ while (PlayerHP > 0 && DummyHP > 0)
       }
       else if (responseLayer1?.ToLower() == "bag")
       {
-         // TODO: bag screen
+         previousScreen = currentScreen;
+         currentScreen = "Bag";
       }
       else if (responseLayer1?.ToLower() == "inspect")
       {
          previousScreen = currentScreen;
          currentScreen = "InspectDummy";
+      }
+   }
+   // HANDLE INPUT FOR BAG SCREEN
+   else if (currentScreen == "Bag")
+   {
+      // Input validation
+      while (responseLayer1?.ToLower() != "back")
+      {
+         Console.WriteLine(battleHeader);
+         Console.WriteLine(Bag);
+         Console.WriteLine(lineBreak);
+         Console.WriteLine(narrationNoOption);
+         Console.WriteLine(divider);
+         Console.WriteLine(back);
+         Console.WriteLine(divider);
+         responseLayer1 = Console.ReadLine();
+      }
+      // Process back
+      if (responseLayer1?.ToLower() == "back")
+      {
+         currentScreen = "BattleMain";
       }
    }
    // HANDLE INPUT FOR INSPECT SCREEN
