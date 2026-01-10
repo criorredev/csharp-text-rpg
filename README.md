@@ -21,4 +21,6 @@ Open the project in Visual Studio or VS Code and run it as a standard C# console
 
 ---
 
-This project is intentionally small and scoped as a learning exercise.
+This project was meant to be intentionally small and scoped as a learning exercise.
+
+In practice, the project grew too large in scope to maintain, dismantling its core features as a result.
