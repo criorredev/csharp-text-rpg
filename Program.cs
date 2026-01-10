@@ -123,6 +123,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(options);
       Console.WriteLine(divider);
+      responseLayer1 = "";
    }
    else if (currentScreen == "BattleMain")
    {
@@ -132,6 +133,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(options);
       Console.WriteLine(divider);
+      responseLayer1 = "";
    }
    else if (currentScreen == "InspectDummy")
    {
@@ -141,6 +143,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(back);
       Console.WriteLine(divider);
+      responseLayer1 = "";
    }
    else if (currentScreen == "BattleMatchStance")
    {
@@ -149,6 +152,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(optionsMatch);
       Console.WriteLine(divider);
+      responseLayer1 = "";
    }
    else if (currentScreen == "PlayerChoiceRock")
    {
@@ -157,6 +161,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(matchRock);
       Console.WriteLine(divider);
+      responseLayer1 = "";
    }
    else if (currentScreen == "PlayerChoicePaper")
    {
@@ -165,6 +170,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(matchPaper);
       Console.WriteLine(divider);
+      responseLayer1 = "";
    }
    else if (currentScreen == "PlayerChoiceScissors")
    {
@@ -173,6 +179,7 @@ while (PlayerHP > 0 && DummyHP > 0)
       Console.WriteLine(divider);
       Console.WriteLine(matchScissors);
       Console.WriteLine(divider);
+      responseLayer1 = "";
    }
    else if (currentScreen == "narrationMatchStanceDummy")
    {
