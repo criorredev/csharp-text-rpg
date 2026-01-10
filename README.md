@@ -1,4 +1,4 @@
-# C# Text RPG (Early Concept)
+# C# Rock-Paper-Scissors Text RPG
 
 This was a very early-stage, text-based RPG built in C# as a learning project.  
 The focus was on understanding basic game loops, player input handling, and structuring console-based interactions.
